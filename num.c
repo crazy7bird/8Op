@@ -3,9 +3,11 @@
 void __hang(void)
 {
   printf("hang :-(\n");
+  printf("All work and no play make me a doll boy.")
   exit(EXIT_FAILURE);
 }
-struct num* NewNum(unsigned char Size)
+
+struct num* newNum(unsigned char Size)
 {
   struct num* NUM = malloc(sizeof(struct num));
   if(NUM == NULL)__hang();
@@ -17,7 +19,7 @@ struct num* NewNum(unsigned char Size)
   return NUM;
 } 
 
-void DelNum(struct num* N)
+void delNum(struct num* N)
 {
   free(N->Num);
   free(N);
@@ -33,7 +35,7 @@ void clearNum(struct num* N)
   }
 }
 
-void printnum(struct num* N)
+void printNum(struct num* N)
 {
   unsigned char Size = N->Size-1;
   printf("0x");
@@ -48,7 +50,7 @@ void printnum(struct num* N)
 }
 
 /*A->size should be equal to B->Size*/
-void copynum(struct num* A, struct num *B)
+void copyNum(struct num* A, struct num *B)
 {
   unsigned char X = A->Size -1;
   for(;X>0;X--)
@@ -60,7 +62,7 @@ void copynum(struct num* A, struct num *B)
 }
 
 /*Fill the num structure with string ex: "123456789\0"*/
-void strfillnum(struct num* N, char* S)
+void str2Num(struct num* N, char* S)
 {
   /*
     Simple

@@ -17,20 +17,20 @@ struct num
 };
 
 /*For instance a new num struct*/
-struct num* NewNum(unsigned char Size);
+struct num* newNum(unsigned char Size);
 /*For delete a struct num, and clear memorie allocation*/
-void DelNum(struct num* N);
+void delNum(struct num* N);
 
 /*Help set the num to 0*/
 void clearNum(struct num* N);
 
 /*print the num\n*/
-void printnum(struct num* N);
+void printNum(struct num* N);
 
 /*Copy A->Num values into B*/
-void copynum(struct num* A, struct num *B);
+void copyNum(struct num* A, struct num *B);
 
 /*Fill the num structure with string ex: "123456789\0"*/
-void strfillnum(struct num* N, char* S);
+void str2Num(struct num* N, char* S);
 
 #endif

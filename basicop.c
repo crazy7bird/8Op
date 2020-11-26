@@ -53,9 +53,9 @@ void _MULL(struct num* A, struct num *B, struct num *R)
   unsigned char z = 0;//Index sur R
   unsigned short I;
   unsigned char* i = (unsigned char*)&I;
-  struct num* mulp = NewNum(R->Size);
-  struct num* muli = NewNum(R->Size);
-  struct num* add = NewNum(R->Size);
+  struct num* mulp = newNum(R->Size);
+  struct num* muli = newNum(R->Size);
+  struct num* add = newNum(R->Size);
 
   for(y=0; y<B->Size;y++)
   {
@@ -85,8 +85,8 @@ void _MULL(struct num* A, struct num *B, struct num *R)
     clearNum(add);
   }
   /*Clear */
-  DelNum(mulp);
-  DelNum(muli);
+  delNum(mulp);
+  delNum(muli);
 }
 
 /*division  between 2 num*/
@@ -106,9 +106,9 @@ end
 void _DIV(struct num* N, struct num *D, struct num *Ret)
 {
   /*To do check in B == 0 then return error divbyZer0*/
-  struct num* Q = NewNum(N->Size); /*Quotien*/
-  struct num* R = NewNum(N->Size); /*Remain*/
-  struct num* calcul = NewNum(N->Size); /*Buffer for calculs purpose*/
+  struct num* Q = newNum(N->Size); /*Quotien*/
+  struct num* R = newNum(N->Size); /*Remain*/
+  struct num* calcul = newNum(N->Size); /*Buffer for calculs purpose*/
   char i =0;
   for(i=(N->Size); i>0; i--)
   {
@@ -119,10 +119,10 @@ void _DIV(struct num* N, struct num *D, struct num *Ret)
     if(_CMP(R,D)>=0)
     {
       _SUB(R,D,calcul);
-      copynum(calcul,R);
+      copyNum(calcul,R);
       Q->Num[0] +=1;
     }
   }
-  printnum(Q);
-  printnum(R);
+  printNum(Q);
+  printNum(R);
 }
