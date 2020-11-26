@@ -16,6 +16,7 @@ struct num* newNum(unsigned char Size)
   NUM->Num = N;
   NUM->Size = Size;
   //printf(".");
+  clearNum(NUM);
   return NUM;
 } 
 
