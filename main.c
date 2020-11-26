@@ -27,7 +27,5 @@ int main(void) {
 	printNum(A);
 	printNum(B);
 	_DIV(A, B, R);
-
-
 	return 0;
 }

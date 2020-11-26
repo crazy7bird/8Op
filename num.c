@@ -3,7 +3,7 @@
 void __hang(void)
 {
   printf("hang :-(\n");
-  printf("All work and no play make me a doll boy.")
+  printf("All work and no play make me a doll boy.");
   exit(EXIT_FAILURE);
 }
 
