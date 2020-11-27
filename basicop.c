@@ -102,6 +102,23 @@ for i := n − 1 .. 0 do  -- Where n is number of bits in N
     Q(i) := 1
   end
 end
+this algo is bit to bit how convert it Byte to Byte
+*/
+
+/*division  between 2 num*/
+/*
+if D = 0 then error(DivisionByZeroException) end
+Q := 0                  -- Initialize quotient and remainder to zero
+R := 0                     
+for i := n − 1 .. 0 do  -- Where n is number of bits in N
+  R := R << 1           -- Left-shift R by 1 bit
+  R(0) := (N(i/8) & 0x1 << i%8)>>i%8          -- Set the least-significant bit of R equal to bit i of the numerator
+  if R ≥ D then
+    R := R − D
+    Q(i/8) |= 1 <<i%8;
+  end
+end
+Try to make it more for 8Bytes registers.
 */
 void _DIV(struct num* N, struct num *D, struct num *Ret)
 {
@@ -120,7 +137,7 @@ void _DIV(struct num* N, struct num *D, struct num *Ret)
     {
       _SUB(R,D,calcul);
       copyNum(calcul,R);
-      Q->Num[0] +=1;
+      Q->Num[i]= N->Num[i];
     }
   }
   printNum(Q);
