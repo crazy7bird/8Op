@@ -64,6 +64,8 @@ Return :
 /*start with same size Nim
 N[0] = LSB;
 N[Size-1] = MSB;
+
+the bug comme to the fact signed char and unsigned char, can cause false sign (ex char > 0x7X)
 */
 signed char _CMP(struct num*A, struct num *B)
 {
@@ -71,12 +73,13 @@ signed char _CMP(struct num*A, struct num *B)
 	for(; x>0;x--)
 	{
 		printf("%d - %d = %d\n",A->Num[x] , B->Num[x],A->Num[x] - B->Num[x] );
-		if(A->Num[x] != B->Num)
+		if(A->Num[x] > B->Num[x])
 		{
-			return (signed char) ((signed char)A->Num[x] - (signed char)B->Num[x]);
+			return 1;
 		}
-		return (signed char) ((signed char)A->Num[0] - (signed char)B->Num[0]);
+    if(A->Num[x] < B->Num[x]) return -1;
 	}
+  return (signed char) ((signed char)A->Num[0] - (signed char)B->Num[0]);
 }
 
 /*
