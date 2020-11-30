@@ -60,8 +60,26 @@ Return :
 -1 if A<B
 
 */
-
 /*TODO WORK ON IT, its little endian ! */ 
+/*start with same size Nim
+N[0] = LSB;
+N[Size-1] = MSB;
+*/
+signed char _CMP(struct num*A, struct num *B)
+{
+	char x = A->Size -1;
+	for(; x>0;x--)
+	{
+		printf("%d - %d = %d\n",A->Num[x] , B->Num[x],A->Num[x] - B->Num[x] );
+		if(A->Num[x] != B->Num)
+		{
+			return (signed char) ((signed char)A->Num[x] - (signed char)B->Num[x]);
+		}
+		return (signed char) ((signed char)A->Num[0] - (signed char)B->Num[0]);
+	}
+}
+
+/*
 signed char _CMP(struct num *A, struct num *B) {
 	unsigned char x = 0;
 	char stop = 0;
@@ -88,6 +106,7 @@ signed char _CMP(struct num *A, struct num *B) {
 	// Do the last digit
 	return (signed char)A->Num[0] - B->Num[0];
 }
+*/
 
 /*Compare to a non num number*/
 char _CMPINT(struct num *A, char B) {

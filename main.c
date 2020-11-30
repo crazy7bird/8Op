@@ -29,7 +29,7 @@ int main(void) {
 
 	printNum(A);
 	printNum(B);
-	printf("%d\n",_CMP(A,B));
-	printf("%d\n",_CMP(B,A));
+	printf("%d\n",(signed char)_CMP(A,B));
+	printf("%d\n",(signed char)_CMP(B,A));
 	return 0;
 }
