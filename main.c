@@ -16,16 +16,20 @@ int main(void) {
 	struct num *A = newNum(4);
 	struct num *B = newNum(4);
 	struct num *R = newNum(8);
-
+	//A
 	A->Num[0] = 0x21;
 	A->Num[1] = 0x43;
+	//B
 	B->Num[0] = 0x23;
 	B->Num[1] = 0x01;
 	B->Num[2] = 0x12;
 	B->Num[3] = 0xF0;
 
+
+
 	printNum(A);
 	printNum(B);
-	_DIV(A, B, R);
+	printf("%d\n",_CMP(A,B));
+	printf("%d\n",_CMP(B,A));
 	return 0;
 }

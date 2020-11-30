@@ -43,11 +43,9 @@ void printNum(struct num* N)
   while(Size > 0)
   {
     printf("%02x",N->Num[Size]);
-    //printf("\n%d : %x\n",Size,N->Num[Size]);
     Size--;
   }
   printf("%02x\n",N->Num[0]);
- // printf("\n%d : %x\n",Size,N->Num[Size]);
 }
 
 /*A->size should be equal to B->Size*/

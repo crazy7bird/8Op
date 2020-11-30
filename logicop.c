@@ -60,27 +60,33 @@ Return :
 -1 if A<B
 
 */
-char _CMP(struct num *A, struct num *B) {
-	unsigned char x = (A->Size - 1);
+
+/*TODO WORK ON IT, its little endian ! */ 
+signed char _CMP(struct num *A, struct num *B) {
+	unsigned char x = 0;
+	char stop = 0;
 	if (A->Size > B->Size) // More digit on A
 	{
-		for (x = (A->Size - 1); x > (B->Size - 1); x--) {
-			if (A->Num[x] != 0)
-				return (char)1;
+		stop = (A->Size - 1) - (B->Size -1);
+		for (char y = 0; y < stop; y++) {
+			if (A->Num[y] != 0)
+				return (signed char)1;
 		}
-	} else // More digit on B
+	} 
+	else // More digit on B
 	{
-		for (x = (B->Size - 1); x > (A->Size - 1); x--) {
-			if (B->Num[x] != 0)
-				return (char)-1;
+		stop = (B->Size - 1) - (A->Size -1);
+		for (char y = 0; y < stop; y++) {
+			if (B->Num[y] != 0)
+				return (signed char)-1;
 		}
 	}
 	for (; x > 0; x--) {
 		if (A->Num[x] != B->Num[x])
-			return (char)A->Num[x] - B->Num[x];
+			return (signed char)A->Num[x] - B->Num[x];
 	}
 	// Do the last digit
-	return (char)A->Num[0] - B->Num[0];
+	return (signed char)A->Num[0] - B->Num[0];
 }
 
 /*Compare to a non num number*/
