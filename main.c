@@ -37,6 +37,8 @@ int main(void) {
 		printNum(Q);
 		_LSHIFT(A,1);
 		printNum(A);
+		printNum(B);
+		printf("%d\n\n",_CMP(B,A));
 	}
 	printNum(A);
 	printNum(Q);

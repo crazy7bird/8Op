@@ -21,9 +21,7 @@ void _RSHIFT(struct num *N, char s) {
 	N->Num[index] = N->Num[index] >> slowshift;
 }
 
-/*Bug when pass to another digit 
-TODO Debug !
-*/
+
 void _LSHIFT(struct num *N, char s) {
 	// s from 0 to 255
   //We add 0 in entry
@@ -35,21 +33,13 @@ void _LSHIFT(struct num *N, char s) {
   char dec = index - fastshift;
   while(dec > 0)
   {
-    N->Num[index] = (N->Num[dec] << slowshift) + (N->Num[dec] >> (8-slowshift)) ;
+    N->Num[index] = (N->Num[dec] << slowshift) + (N->Num[dec-1] >> (8-slowshift)) ;
     dec --;
     index --;
   }
   /*One more time*/
   N->Num[index] = (N->Num[dec] << slowshift);
-  /*
-  index --;
-  while(index > 0)
-  {
-    N->Num[index] = 0x00;
-    index--;
-  }
-  N->Num[0] = 0x00;
-	*/
+
   for(index = 0; index < fastshift ; index++)
   {
     N->Num[index] =0x00;
@@ -87,7 +77,7 @@ signed char _CMP(struct num*A, struct num *B)
 		{
 			if(B->Num[x]) //If A not éqaul to 0.
 			{
-				return  (signed char)1;
+				return  (signed char)-1;
 			}
 			x--;
 		}
