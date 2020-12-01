@@ -60,56 +60,52 @@ Return :
 -1 if A<B
 
 */
-/*TODO WORK ON IT, its little endian ! */ 
-/*start with same size Nim
-N[0] = LSB;
-N[Size-1] = MSB;
-
-the bug comme to the fact signed char and unsigned char, can cause false sign (ex char > 0x7X)
-*/
 signed char _CMP(struct num*A, struct num *B)
 {
-	char x = A->Size -1;
+	char x = A->Size-1;
+	if (A->Size > B->Size) //A a plus de digit que B
+	{
+		x = A->Size-1;
+		char stop = B->Size-1;
+		while(x > stop)
+		{
+			if(A->Num[x]) //If A not éqaul to 0.
+			{
+				return  (signed char)1;
+			}
+			x--;
+		}
+	}
+	if (A->Size < B->Size) //A less digit than B
+	{
+		x = B->Size-1;
+		char stop = A->Size-1;
+		while(x > stop)
+		{
+			if(B->Num[x]) //If A not éqaul to 0.
+			{
+				return  (signed char)1;
+			}
+			x--;
+		}
+	}
+	/*Now A and B have the same digit numbers*/
 	for(; x>0;x--)
 	{
 		printf("%d - %d = %d\n",A->Num[x] , B->Num[x],A->Num[x] - B->Num[x] );
-		if(A->Num[x] > B->Num[x])
+		if(A->Num[x] != B->Num[x]) //A and B are different so one is biger than the other
 		{
-			return 1;
+			if(A->Num[x] > B->Num[x]) return  (signed char)1;
+			else return  (signed char)-1;
 		}
-    if(A->Num[x] < B->Num[x]) return -1;
 	}
-  return (signed char) ((signed char)A->Num[0] - (signed char)B->Num[0]);
-}
-
-/*
-signed char _CMP(struct num *A, struct num *B) {
-	unsigned char x = 0;
-	char stop = 0;
-	if (A->Size > B->Size) // More digit on A
+	if(A->Num[0] != B->Num[0]) //A and B are different so one is biger than the other
 	{
-		stop = (A->Size - 1) - (B->Size -1);
-		for (char y = 0; y < stop; y++) {
-			if (A->Num[y] != 0)
-				return (signed char)1;
-		}
-	} 
-	else // More digit on B
-	{
-		stop = (B->Size - 1) - (A->Size -1);
-		for (char y = 0; y < stop; y++) {
-			if (B->Num[y] != 0)
-				return (signed char)-1;
-		}
+		if(A->Num[0] > B->Num[0]) return  (signed char)1;
+		else return  (signed char)-1;
 	}
-	for (; x > 0; x--) {
-		if (A->Num[x] != B->Num[x])
-			return (signed char)A->Num[x] - B->Num[x];
-	}
-	// Do the last digit
-	return (signed char)A->Num[0] - B->Num[0];
+	else return 0; //perfectly equal. 
 }
-*/
 
 /*Compare to a non num number*/
 char _CMPINT(struct num *A, char B) {

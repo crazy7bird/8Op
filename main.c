@@ -13,7 +13,7 @@ char _MOD(struct num *A, struct num *B) {
 
 int main(void) {
 	printf("Hello World\n");
-	struct num *A = newNum(4);
+	struct num *A = newNum(2);
 	struct num *B = newNum(4);
 	struct num *R = newNum(8);
 	//A
@@ -21,9 +21,9 @@ int main(void) {
 	A->Num[1] = 0x43;
 	//B
 	B->Num[0] = 0x23;
-	B->Num[1] = 0x01;
-	B->Num[2] = 0x12;
-	B->Num[3] = 0xF0;
+	B->Num[1] = 0x43;
+	//B->Num[2] = 0x12;
+	//B->Num[3] = 0xF0;
 
 
 
