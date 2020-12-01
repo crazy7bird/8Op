@@ -21,6 +21,9 @@ void _RSHIFT(struct num *N, char s) {
 	N->Num[index] = N->Num[index] >> slowshift;
 }
 
+/*Bug when pass to another digit 
+TODO Debug !
+*/
 void _LSHIFT(struct num *N, char s) {
 	// s from 0 to 255
   //We add 0 in entry
@@ -92,7 +95,6 @@ signed char _CMP(struct num*A, struct num *B)
 	/*Now A and B have the same digit numbers*/
 	for(; x>0;x--)
 	{
-		printf("%d - %d = %d\n",A->Num[x] , B->Num[x],A->Num[x] - B->Num[x] );
 		if(A->Num[x] != B->Num[x]) //A and B are different so one is biger than the other
 		{
 			if(A->Num[x] > B->Num[x]) return  (signed char)1;

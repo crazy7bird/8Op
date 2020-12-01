@@ -29,10 +29,10 @@ void delNum(struct num* N)
 
 void clearNum(struct num* N)
 {
-  char i = 0;
+  unsigned char i = 0;
   for(i=0;i<N->Size;i++)
   {
-    N->Num[i] = 0;
+    N->Num[i] = (unsigned char)0;
   }
 }
 
