@@ -45,3 +45,26 @@ int main(void) {
 
 	return 0;
 }
+
+/*
+[IDEA] :
+recursive DIV(N,D,S) //S= 0 for the first call
+{
+	Nl = N; (copy);
+	Q = struct num 1;
+
+	while(D>(Nl + S)) :
+		Nl<<1;
+		Q<<1;
+	
+	//1 step back
+	Nl >>1;
+	Q >>1;
+
+	IF (D-Nl)>N :
+		Q,Nl += recursive DIV(N,D,Nl);
+	
+	R = D-Nl;
+	return Q,Nl,R;
+}
+*/
