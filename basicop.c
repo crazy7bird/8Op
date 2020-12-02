@@ -26,6 +26,36 @@ void _ADD(struct num* A, struct num *B, struct num *R)
   }
 }
 
+void _X2(struct num* A)
+{
+  //Addition with the same number Hope you dont overflow ?
+  char iter = 0;
+  char carry = 0;
+  char carry_next = 0;
+  while(iter < A->Size)
+  {
+    if(A->Num[iter] > 0x7F) carry_next = 1;
+    else carry_next =0;
+    A->Num[iter] = A->Num[iter] + A->Num[iter] + carry;
+    carry = carry_next;
+    iter++;
+  }
+}
+
+void _P1(struct num* A)
+{ 
+  //Addition with the same number Hope you dont overflow ?
+  char iter = 0;
+  char carry_next = 1;
+  while(carry_next)
+  {
+    if(A->Num[iter] > 0xFE) carry_next = 1;
+    else carry_next =0;
+    A->Num[iter] = A->Num[iter] + 1;
+    iter++;
+  }
+}
+
 /*Substraction between 2 num. Make sure A greater than B*/
 void _SUB(struct num* A, struct num *B, struct num *R)
 {

@@ -14,6 +14,8 @@
 
 /*Addition between 2 num*/
 void _ADD(struct num* A, struct num *B, struct num *R);
+void _X2(struct num* A);
+void _P1(struct num* A);
 /*Substraction between 2 num. Make sure A greater than B*/
 void _SUB(struct num* A, struct num *B, struct num *R);
 
