@@ -80,21 +80,24 @@ int main(void) {
 	struct num *B = newNum(5);
 	struct num *R = newNum(8);
 	//A
-	A->Num[0] = 0x23;
-	A->Num[1] = 0x01;
+	A->Num[0] = 0x01;
+	A->Num[1] = 0x00;
 	//B
-	B->Num[0] = 0x56;
-	B->Num[1] = 0x34;
-	B->Num[2] = 0x00;
+	B->Num[0] = 0x00;
+	B->Num[1] = 0x00;
+	B->Num[2] = 0x01;
 	B->Num[3] = 0x00;
 
 
 
 	printNum(A);
 	printNum(B);
+	_M1(A);
+	_M1(B);
+	printNum(A);
+	printNum(B);
 
-
-	_laDIV(B,A);
+	//_laDIV(B,A);
 	/*
 	struct num *S = newNum(6);
 	struct num *Q;
