@@ -46,7 +46,7 @@ struct num* _inerDIV(struct num* N, struct num* D, struct num* prevD)
 
 	//Fast forward 
 	_ADD(Dl,prevD,R);
-	while(_CMP(N,R)>0)
+	while(_CMP(N,R)>=0)
 	{
 		_LSHIFT(Dl,1);
 		_LSHIFT(Q,1);
@@ -58,8 +58,13 @@ struct num* _inerDIV(struct num* N, struct num* D, struct num* prevD)
 	_RSHIFT(Dl,1);
 	_RSHIFT(Q,1); //One step back for Q
 	_M1(Q); //Q less one cause we start à 1 and no 0
+
 	clearNum(R);
 	_ADD(prevD,Dl,R);
+	printf("inerdiv\n");
+	printNum(Dl);
+	printNum(prevD);
+
 	copyNum(R,prevD);
 	delNum(Dl);
 	delNum(R);
@@ -80,18 +85,13 @@ struct num* _laDIV(struct num* N, struct num* D)
 	{
 		_LSHIFT(Dl,1);
 		_LSHIFT(Q,1);
-		printf(">");
 	}
 	//One step back
 	_RSHIFT(Dl,1);
 	_RSHIFT(Q,1); //One step back for Q
 	_M1(Q); //Q less one cause we start à 1 and no 0
 
-	printf("\n");
-	printNum(Dl);
-	printNum(Q);
-	//Slow Forward
-	printf("cmp : %d\n",_CMP(N,Dl));
+	
 	while(_CMP(N,Dl)>0)
 	{
 		struct num* Qr;
@@ -100,7 +100,7 @@ struct num* _laDIV(struct num* N, struct num* D)
 		_ADD(Qr,Q,R);
 		copyNum(R,Q);
 		delNum(Qr);
-		printf("\n");
+		printf("outerdiv\n");
 		printNum(Q);
 		printNum(Dl);
 	}
@@ -130,10 +130,6 @@ int main(void) {
 
 
 
-	printNum(A);
-	printNum(B);
-	_M1(A);
-	_M1(B);
 	printNum(A);
 	printNum(B);
 
