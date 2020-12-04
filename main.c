@@ -12,27 +12,28 @@ void __DIV(struct num *N,struct num* D)
 	struct num * Q = newNum(N->Size);
 	struct num * R = newNum(N->Size);
 	struct num * calcul = newNum(N->Size);
+
 	signed short i = (N->Size * 8) -1;
-	char mask = 0x01;
-	char index = 0;
+	unsigned char mask = 0x80;
+	unsigned char index = N->Size -1 ;
+
 	while(i >= 0)
 	{
 		_LSHIFT(R,1);
-		R->Num[0] |= (N->Num[i] & mask);
-
+		R->Num[0] |= (N->Num[index] & mask)?0x01:0x00;
 		if(_CMP(R,D)>=0)
 		{
 			clearNum(calcul);
 			_SUB(R,D,calcul);
 			copyNum(calcul,R);
-			Q->Num[i] |= mask ;
+			Q->Num[index] |= mask ;
 		}
 
-		mask = mask << 1;
+		mask = mask >> 1;
 		if(mask == 0)
 		{
-			mask = 1;
-			index ++;
+			mask = 0x80;
+			index --;
 		}
 		i--;
 	}
@@ -47,9 +48,9 @@ void __DIV(struct num *N,struct num* D)
 
 int main(void) {
 	printf("Hello World\n");
-	struct num *A = newNum(5);
-	struct num *B = newNum(5);
-	struct num *R = newNum(8);
+	struct num *A = newNum(3);
+	struct num *B = newNum(3);
+	//struct num *R = newNum(8);
 	//A
 	A->Num[0] = 0x34;
 	A->Num[1] = 0x12;
