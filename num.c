@@ -7,6 +7,13 @@ void __hang(void)
   exit(EXIT_FAILURE);
 }
 
+/*Checking rules like buffers equals size, +1 size or x2*/
+void __checkRules(void)
+{
+  /*YEAP it could be cool and Secure*/
+  /*And give me all the succes, and buy punta cana */
+}
+
 struct num* newNum(unsigned char Size)
 {
   struct num* NUM = malloc(sizeof(struct num));

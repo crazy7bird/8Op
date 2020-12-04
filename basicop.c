@@ -2,7 +2,7 @@
 #include "logicop.h" //Needed for _CMP(A,B) used by DIV algo
 
 
-
+/*_ADD(A,B,R) => R = A+B*/
 void _ADD(struct num* A, struct num *B, struct num *R)
 {
   //Do verif here
@@ -10,19 +10,21 @@ void _ADD(struct num* A, struct num *B, struct num *R)
   char Size = A->Size;
   char iter =0;
   char carry =0;
+  unsigned char ADD = 0; // Var for calcul addition and safe overflow
   for(iter =0; iter < Size; iter++)
   {
-    R->Num[iter] = A->Num[iter] + B->Num[iter];//FF + FF 
-    if((R->Num[iter] < A->Num[iter]) || (R->Num[iter] < B->Num[iter]))
+    ADD = A->Num[iter] + B->Num[iter];//FF + FF 
+    if((ADD < A->Num[iter]) || (ADD < B->Num[iter]))
     {
-      R->Num[iter] += carry;
+      ADD += carry;
       carry = 1;
     }
     else
     {
-      R->Num[iter] += carry;
+      ADD += carry;
       carry = 0;
     }
+    R->Num[iter] = ADD;
   }
 }
 
