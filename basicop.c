@@ -120,55 +120,42 @@ void _MULL(struct num* A, struct num *B, struct num *R)
 
 /*division  between 2 num*/
 /*
-if D = 0 then error(DivisionByZeroException) end
-Q := 0                  -- Initialize quotient and remainder to zero
-R := 0                     
-for i := n − 1 .. 0 do  -- Where n is number of bits in N
-  R := R << 1           -- Left-shift R by 1 bit
-  R(0) := N(i)          -- Set the least-significant bit of R equal to bit i of the numerator
-  if R ≥ D then
-    R := R − D
-    Q(i) := 1
-  end
-end
-this algo is bit to bit how convert it Byte to Byte
+DIVISON, return Quotient in Q an Rest in R.
+If Q and R could be null.
 */
-
-/*division  between 2 num*/
-/*
-if D = 0 then error(DivisionByZeroException) end
-Q := 0                  -- Initialize quotient and remainder to zero
-R := 0                     
-for i := n − 1 .. 0 do  -- Where n is number of bits in N
-  R := R << 1           -- Left-shift R by 1 bit
-  R(0) := (N(i/8) & 0x1 << i%8)>>i%8          -- Set the least-significant bit of R equal to bit i of the numerator
-  if R ≥ D then
-    R := R − D
-    Q(i/8) |= 1 <<i%8;
-  end
-end
-Try to make it more for 8Bytes registers.
-*/
-void _DIV(struct num* N, struct num *D, struct num *Ret)
+void _DIV(struct num *N,struct num* D,struct num* Q, struct num*R)
 {
-  /*To do check in B == 0 then return error divbyZer0*/
-  struct num* Q = newNum(N->Size); /*Quotien*/
-  struct num* R = newNum(N->Size); /*Remain*/
-  struct num* calcul = newNum(N->Size); /*Buffer for calculs purpose*/
-  char i =0;
-  for(i=(N->Size); i>0; i--)
-  {
-    /*FuckIt i aint got leftshift*/
-    _LSHIFT(R,8);
-    R->Num[0] = N->Num[i -1];
-    clearNum(calcul);
-    if(_CMP(R,D)>=0)
-    {
-      _SUB(R,D,calcul);
-      copyNum(calcul,R);
-      Q->Num[i]= N->Num[i];
-    }
-  }
-  printNum(Q);
-  printNum(R);
+	//Preparation 
+	struct num * Ql = (Q == NULL) ? newNum(N->Size) :Q;
+	struct num * Rl = (R == NULL) ? newNum(N->Size) :R;
+
+	struct num * calcul = newNum(N->Size);
+
+	signed short i = (N->Size * 8) -1;
+	unsigned char mask = 0x80;
+	unsigned char index = N->Size -1 ;
+
+	while(i >= 0)
+	{
+		_LSHIFT(Rl,1);
+		Rl->Num[0] |= (N->Num[index] & mask)?0x01:0x00;
+		if(_CMP(Rl,D)>=0)
+		{
+			clearNum(calcul);
+			_SUB(Rl,D,calcul);
+			copyNum(calcul,Rl);
+			Ql->Num[index] |= mask ;
+		}
+
+		mask = mask >> 1;
+		if(mask == 0)
+		{
+			mask = 0x80;
+			index --;
+		}
+		i--;
+	}
+	delNum(calcul);
+	if(Q == NULL) delNum(Ql);
+	if(R == NULL) delNum(Rl);
 }

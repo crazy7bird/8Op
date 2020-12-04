@@ -22,6 +22,7 @@ void _SUB(struct num* A, struct num *B, struct num *R);
 /*Multiplication between 2 num*/
 void _MULL(struct num* A, struct num *B, struct num *R);
 /*division  between 2 num*/
-void _DIV(struct num* A, struct num *B, struct num *R);
+/*R and Q could be set to NULL, R the Remainder Q the Quotient*/
+void _DIV(struct num *N,struct num* D,struct num* Q, struct num*R);
 
 #endif
