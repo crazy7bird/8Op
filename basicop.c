@@ -13,15 +13,13 @@ void _ADD(struct num* A, struct num *B, struct num *R)
   unsigned char ADD = 0; // Var for calcul addition and safe overflow
   for(iter =0; iter < Size; iter++)
   {
-    ADD = A->Num[iter] + B->Num[iter];//FF + FF 
-    if((ADD < A->Num[iter]) || (ADD < B->Num[iter]) || (ADD==0xFF && carry ==1))
+    ADD = A->Num[iter] + B->Num[iter];
+    if((ADD < A->Num[iter]) || (ADD < B->Num[iter]) || (ADD+=carry) ==0 )
     {
-      ADD += carry;
       carry = 1;
     }
     else
     {
-      ADD += carry;
       carry = 0;
     }
     R->Num[iter] = ADD;
