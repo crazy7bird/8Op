@@ -7,7 +7,7 @@ void _RSHIFT(struct num *N, char s) {
 		return;
 	char fastshift = s / 8;
 	char slowshift = s % 8;
-	char index;
+	unsigned char index;
 	for (index = 0; index < N->Size; index++) {
 		N->Num[index] = N->Num[index + fastshift];
 	}
@@ -29,8 +29,8 @@ void _LSHIFT(struct num *N, char s) {
 		return;
 	char fastshift = s / 8;
 	char slowshift = s % 8;
-	char index = N->Size -1;
-  char dec = index - fastshift;
+	unsigned char index = N->Size -1;
+  	unsigned char dec = index - fastshift;
   while(dec > 0)
   {
     N->Num[index] = (N->Num[dec] << slowshift) + (N->Num[dec-1] >> (8-slowshift)) ;
@@ -55,7 +55,7 @@ Return :
 */
 signed char _CMP(struct num*A, struct num *B)
 {
-	char x = A->Size-1;
+	unsigned char x = A->Size-1;
 	if (A->Size > B->Size) //A a plus de digit que B
 	{
 		x = A->Size-1;

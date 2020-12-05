@@ -6,6 +6,18 @@
 //#define MAXCHAR 8
 
 
+struct num* modpow(struct num* base, struct num* exp, struct num* m) {
+   struct num* result = newNum(2*base->Size);
+
+   while (_CMPINT(exp,0)>0) 
+   {
+      if ((exp & (big)1) > 0) result = (result * base) % m;
+      _RSHIFT(exp,1);
+      base = (base * base) % m;
+   }
+   return result;
+ }
+
 int main(void) 
 {
 	printf("Hello World\n");
@@ -31,7 +43,6 @@ int main(void)
 	printNum(A);
 	printNum(B);
 	printNum(R);
-
 
 	return 0;
 }
