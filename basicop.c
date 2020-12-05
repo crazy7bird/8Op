@@ -7,9 +7,9 @@ void _ADD(struct num* A, struct num *B, struct num *R)
 {
   //Do verif here
   //Assume Size A == Size B. and Size R atleast SizeA+1
-  char Size = A->Size;
-  char iter =0;
-  char carry =0;
+  unsigned char Size = A->Size;
+  unsigned char iter =0;
+  unsigned char carry =0;
   unsigned char ADD = 0; // Var for calcul addition and safe overflow
   for(iter =0; iter < Size; iter++)
   {
@@ -30,8 +30,8 @@ void _ADD(struct num* A, struct num *B, struct num *R)
 void _P1(struct num* A)
 { 
   //Addition with the same number Hope you dont overflow ?
-  char iter = 0;
-  char carry_next = 1;
+  unsigned char iter = 0;
+  unsigned char carry_next = 1;
   while(carry_next)
   {
     if(A->Num[iter] > 0xFE) carry_next = 1;
@@ -44,8 +44,8 @@ void _P1(struct num* A)
 void _M1(struct num* A)
 { 
   //Addition with the same number Hope you dont overflow ?
-  char iter = 0;
-  char carry_next = 1;
+  unsigned char iter = 0;
+  unsigned char carry_next = 1;
   while(carry_next)
   {
     if(A->Num[iter] < 0x01) carry_next = 1;
@@ -58,18 +58,24 @@ void _M1(struct num* A)
 /*Substraction between 2 num. Make sure A greater than B*/
 void _SUB(struct num* A, struct num *B, struct num *R)
 {
-  //Do R = a-(b + c)
-  unsigned char index = A->Size;
-  unsigned char x;
-  unsigned char carry = 0;
-  for (x=0; x<index;x++)
+  //Do verif here
+  //Assume Size A == Size B.
+  unsigned char Size = A->Size;
+  unsigned char iter =0;
+  unsigned char carry =0;
+  unsigned char SUB = 0; // Var for calcul addition and safe overflow
+  for(iter =0; iter < Size; iter++)
   {
-    R->Num[x] = A->Num[x] - B->Num[x] - carry;
-    if(R->Num[x]>A->Num[x] && R->Num[x]>B->Num[x])
+    SUB = A->Num[iter] - B->Num[iter];
+    if((SUB < A->Num[iter]) || (SUB < B->Num[iter]) || (SUB-=carry) ==0xFF )
     {
       carry = 1;
     }
-    else carry = 0;
+    else
+    {
+      carry = 0;
+    }
+    R->Num[iter] = SUB;
   }
 }
 
