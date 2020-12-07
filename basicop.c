@@ -14,12 +14,14 @@ void _ADD(struct num* A, struct num *B, struct num *R)
   for(iter =0; iter < Size; iter++)
   {
     ADD = A->Num[iter] + B->Num[iter];
-    if((ADD < A->Num[iter]) || (ADD < B->Num[iter]) || (ADD+=carry) ==0 )
+    if((ADD < A->Num[iter]) || (ADD < B->Num[iter]) || (ADD+carry) < ADD )
     {
+      ADD+=carry;
       carry = 1;
     }
     else
     {
+      ADD+=carry;
       carry = 0;
     }
     R->Num[iter] = ADD;
@@ -90,7 +92,6 @@ void _MULL(struct num* A, struct num *B, struct num *R)
   unsigned char* i = (unsigned char*)&I;
   struct num* mulp = newNum(R->Size);
   struct num* muli = newNum(R->Size);
-  struct num* add = newNum(R->Size);
 
   for(y=0; y<B->Size;y++)
   {
@@ -112,12 +113,10 @@ void _MULL(struct num* A, struct num *B, struct num *R)
         muli->Num[z] = i[1];
       }
     }
-
-    _ADD(mulp,muli,add);
-    _ADD(R,add,R);
+    _ADD(R,muli,R);
+    _ADD(R,mulp,R);
     clearNum(muli);
     clearNum(mulp);
-    clearNum(add);
   }
   /*Clear */
   delNum(mulp);

@@ -7,14 +7,28 @@
 
 
 struct num* modpow(struct num* base, struct num* exp, struct num* m) {
-   struct num* result = newNum(2*base->Size);
+
+   struct num* result = newNum(2*base->Size); result->Num[0] =0x01;
+   struct num* calcul = newNum(2*base->Size);
 
    while (_CMPINT(exp,0)>0) 
    {
-      if ((exp & (big)1) > 0) result = (result * base) % m;
+      if ((exp->Num[0] & 1) > 0)
+	  {
+		  clearNum(calcul);
+		  //result = (result * base) % m;
+		  _MULL(result,base,calcul);
+		  _DIV(calcul,m,NULL,result);
+		  
+	  } 
       _RSHIFT(exp,1);
-      base = (base * base) % m;
+	  clearNum(calcul);
+      //base = (base * base) % m;
+	  _MULL(base,base,calcul);
+	  _DIV(calcul,m,NULL,base);
    }
+   printNum(result);
+   delNum(calcul);
    return result;
  }
 
@@ -23,26 +37,26 @@ int main(void)
 	printf("Hello World\n");
 	struct num *A = newNum(4);
 	struct num *B = newNum(4);
+	struct num *C = newNum(4);
 	struct num *R = newNum(4);
 	//A
-	A->Num[0] = 0xFF;
+	A->Num[0] = 0x11;
 	A->Num[1] = 0x00;
-	A->Num[2] = 0x00;
+	//A->Num[2] = 0x00;
 
 	//B
-	B->Num[0] = 0xFE;
-	B->Num[1] = 0xFF;
-	B->Num[2] = 0x00;
+	B->Num[0] = 0x12;
+	B->Num[1] = 0x00;
+	//B->Num[2] = 0x00;
+
+	C->Num[0] = 0x37;
 
 	printNum(A);
 	printNum(B);
-	printNum(R);
+	printNum(C);
 
-	printf("\nADD :\n");
-	_SUB(B,A,R);
-	printNum(A);
-	printNum(B);
-	printNum(R);
+	modpow(A,B,C);
+
 
 	return 0;
 }
