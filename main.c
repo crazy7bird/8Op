@@ -24,6 +24,7 @@ struct num* modpow(struct num* base, struct num* exp, struct num* m) {
 		  printNum(base);
 		  _MULL(result,base,calcul);
 		  printNum(calcul);
+		  printNum(m);
 		  _DIV(calcul,m,NULL,result);
 		  printNum(result);
 		  printf("---\n");
@@ -50,7 +51,7 @@ int main(void)
 	struct num *A = newNum(4);
 	struct num *B = newNum(4);
 	struct num *C = newNum(4);
-	struct num *R = newNum(4);
+
 	//A
 	A->Num[0] = 0x11;
 	A->Num[1] = 0x00;
@@ -63,11 +64,27 @@ int main(void)
 
 	C->Num[0] = 0x37;
 
-	printNum(A);
-	printNum(B);
-	printNum(C);
+	//printNum(A);
+	//printNum(B);
+	//printNum(C);
 
-	modpow(A,B,C);
+	//modpow(A,B,C);
+{
+	struct num *N = newNum(4);
+	struct num *D = newNum(4);
+	struct num *Q = newNum(4);
+	struct num *R = newNum(8);
+	N->Num[0] = 0x58;
+	N->Num[1] = 0x02;
+	D->Num[0] = 0x37;
+
+	printNum(N);
+	printNum(D);
+	_DIV(N,D,Q,R);
+	printNum(Q);
+	printNum(R);
+
+}
 
 
 	return 0;
