@@ -8,8 +8,10 @@
 
 struct num* modpow(struct num* base, struct num* exp, struct num* m) {
 
-   struct num* result = newNum(2*base->Size); result->Num[0] =0x01;
-   struct num* calcul = newNum(2*base->Size);
+   unsigned char Size = (2 * base->Size);
+   struct num* result = newNum(Size); 
+   result->Num[0] =0x01;
+   struct num* calcul = newNum(Size);
 
    while (_CMPINT(exp,0)>0) 
    {
@@ -17,15 +19,25 @@ struct num* modpow(struct num* base, struct num* exp, struct num* m) {
 	  {
 		  clearNum(calcul);
 		  //result = (result * base) % m;
+		  printf("START inside\n");
+		  printNum(result);
+		  printNum(base);
 		  _MULL(result,base,calcul);
+		  printNum(calcul);
 		  _DIV(calcul,m,NULL,result);
-		  
+		  printNum(result);
+		  printf("---\n");
 	  } 
+	  printf("START outside\n");
       _RSHIFT(exp,1);
 	  clearNum(calcul);
       //base = (base * base) % m;
 	  _MULL(base,base,calcul);
+	  printNum(calcul);
 	  _DIV(calcul,m,NULL,base);
+	  printNum(exp);
+	  printNum(base);
+	  printf("---\n");
    }
    printNum(result);
    delNum(calcul);
