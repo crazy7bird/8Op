@@ -136,33 +136,51 @@ void _DIV(struct num *N,struct num* D,struct num* Q, struct num*R)
 	struct num * Ql = (Q == NULL) ? newNum(N->Size) :Q;
 	struct num * Rl = (R == NULL) ? newNum(N->Size) :R;
 
-	struct num * calcul = newNum(N->Size);
+  //Precalcul test 
+  char test = _CMP(D,N);
+  if(test>0) //N<D
+  {
+    clearNum(Ql);
+    copyNum(N,Rl);
+  }
 
-	signed short i = (N->Size * 8) -1;
-	unsigned char mask = 0x80;
-	unsigned char index = N->Size -1 ;
+  if(test == 0)
+  {
+    clearNum(Rl);
+    Ql->Num[0]=0x01;
+  }
+  
+  if(test<0) //N>D
+  {
+    struct num * calcul = newNum(N->Size);
 
-	while(i >= 0)
-	{
-		_LSHIFT(Rl,1);
-		Rl->Num[0] |= (N->Num[index] & mask)?0x01:0x00;
-		if(_CMP(Rl,D)>=0)
-		{
-			clearNum(calcul);
-			_SUB(Rl,D,calcul);
-			copyNum(calcul,Rl);
-			Ql->Num[index] |= mask ;
-		}
+    signed short i = (N->Size * 8) -1;
+    unsigned char mask = 0x80;
+    unsigned char index = N->Size -1 ;
 
-		mask = mask >> 1;
-		if(mask == 0)
-		{
-			mask = 0x80;
-			index --;
-		}
-		i--;
-	}
-	delNum(calcul);
+    while(i >= 0)
+    {
+      _LSHIFT(Rl,1);
+      Rl->Num[0] |= (N->Num[index] & mask)?0x01:0x00;
+      if(_CMP(Rl,D)>=0)
+      {
+        clearNum(calcul);
+        _SUB(Rl,D,calcul);
+        copyNum(calcul,Rl);
+        Ql->Num[index] |= mask ;
+      }
+
+      mask = mask >> 1;
+      if(mask == 0)
+      {
+        mask = 0x80;
+        index --;
+      }
+      i--;
+    }
+    delNum(calcul);
+  } 
+	
 	if(Q == NULL) delNum(Ql);
 	if(R == NULL) delNum(Rl);
 }

@@ -8,7 +8,7 @@
 
 struct num* modpow(struct num* base, struct num* exp, struct num* m) {
 
-   unsigned char Size = (2 * base->Size);
+   unsigned char Size = (base->Size);
    struct num* result = newNum(Size); 
    result->Num[0] =0x01;
    struct num* calcul = newNum(Size);
@@ -53,40 +53,19 @@ int main(void)
 	struct num *C = newNum(4);
 
 	//A
-	A->Num[0] = 0x4b;
+	A->Num[0] = 0x22;
 	A->Num[1] = 0x00;
 	//A->Num[2] = 0x00;
 
 	//B
-	B->Num[0] = 0x37;
+	B->Num[0] = 0x12;
 	B->Num[1] = 0x00;
 	//B->Num[2] = 0x00;
 
-	C->Num[0] = 0x00;
+	C->Num[0] = 0x37;
 
-	printNum(A);
-	printNum(B);
-	_SUB(A,B,C);
-	printNum(C);
-/*
-	//modpow(A,B,C);
-{
-	struct num *N = newNum(4);
-	struct num *D = newNum(4);
-	struct num *Q = newNum(4);
-	struct num *R = newNum(4);
-	N->Num[0] = 0x58;
-	N->Num[1] = 0x02;
-	D->Num[0] = 0x37;
 
-	printNum(N);
-	printNum(D);
-	_DIV(N,D,Q,R);
-	printNum(Q);
-	printNum(R);
-
-}*/
-
+	modpow(A,B,C);
 
 
 	return 0;
