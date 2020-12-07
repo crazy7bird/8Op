@@ -69,12 +69,14 @@ void _SUB(struct num* A, struct num *B, struct num *R)
   for(iter =0; iter < Size; iter++)
   {
     SUB = A->Num[iter] - B->Num[iter];
-    if((SUB < A->Num[iter]) || (SUB < B->Num[iter]) || (SUB-=carry) ==0xFF )
+    if((SUB < A->Num[iter]) || (SUB < B->Num[iter]) || (SUB-carry) > SUB)
     {
+      SUB-=carry;
       carry = 1;
     }
     else
     {
+      SUB-=carry;
       carry = 0;
     }
     R->Num[iter] = SUB;
