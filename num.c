@@ -70,14 +70,40 @@ void copyNum(struct num* A, struct num *B)
 /*Fill the num structure with string ex: "123456789\0"*/
 void str2Num(struct num* N, char* S)
 {
-  /*
-    Simple
-    pour chaque digit de S
-    converti une chaine S en num ?
-  */
-  
-  /*S size*/
-  short Size =0;
-  while(S[Size] != 0x00)Size++;
-  printf("len(S) = %d\n",Size);
+  //Tests HEXA is given.
+  if( S[0]==0x30 && S[1]==0x78) //Test 0 and x
+  {
+    S++;//Remove "0x"
+    S++; //Remove "0x"
+    short Size =0;
+    while(S[Size] != 0x00)Size++;
+    //printf("len(S) = %d\n",Size);
+    if(Size > 2*N->Size)
+    {
+      printf("[Error] str2Num str len greater than number size\n");
+      exit(EXIT_FAILURE);
+    }
+    if(Size%2 != 0)
+    {
+      printf("[Error] str2Num str lack hexa digit.\n");
+      exit(EXIT_FAILURE);
+    }
+    char iter = Size -1;
+    unsigned char NumIter = 0;
+    clearNum(N); //Be sure every Byte are clear.
+    for(;iter>0;iter-=2)
+    {
+      unsigned char NUM = ((S[iter]-0x30 )+ ((S[iter-1]-0x30)<<4));
+      printf("%x\n",NUM);
+      N->Num[NumIter] = NUM;
+      NumIter ++;
+    }
+
+  }
+  else
+  {
+    printf("[Error] str2Num str is not 0x string\n");
+    exit(EXIT_FAILURE);
+  }
+
 }

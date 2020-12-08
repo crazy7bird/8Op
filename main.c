@@ -49,25 +49,10 @@ int main(void)
 {
 	printf("Hello World\n");
 	struct num *A = newNum(4);
-	struct num *B = newNum(4);
-	struct num *C = newNum(4);
 
-	//A
-	A->Num[0] = 0x22;
-	A->Num[1] = 0x00;
-	//A->Num[2] = 0x00;
-
-	//B
-	B->Num[0] = 0x12;
-	B->Num[1] = 0x00;
-	//B->Num[2] = 0x00;
-
-	C->Num[0] = 0x37;
-
-
-	modpow(A,B,C);
-
-
+	printNum(A);
+	str2Num(A,"0x1234");
+	printNum(A);
 	return 0;
 }
 
