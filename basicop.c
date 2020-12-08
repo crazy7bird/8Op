@@ -26,6 +26,8 @@ void _ADD(struct num* A, struct num *B, struct num *R)
     }
     R->Num[iter] = ADD;
   }
+  printf("%d\n",iter);
+  if(R->Size>A->Size)R->Num[iter+1] = carry;
 }
 
 
