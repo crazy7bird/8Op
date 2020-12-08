@@ -88,10 +88,10 @@ void str2Num(struct num* N, char* S)
       printf("[Error] str2Num str lack hexa digit.\n");
       exit(EXIT_FAILURE);
     }
-    char iter = Size -1;
+    unsigned char iter = Size -1;
     unsigned char NumIter = 0;
     clearNum(N); //Be sure every Byte are clear.
-    for(;iter>0;iter-=2)
+    for(;(signed char)iter>0;iter-=2)
     {
       unsigned char NUM;// = ((S[iter]-0x30 )+ ((S[iter-1]-0x30)<<4));
       //[CODAGE MODE] BARBUS !
@@ -100,6 +100,7 @@ void str2Num(struct num* N, char* S)
       NUM += (S[iter]>0x39) ? ((S[iter]>0x46)?(S[iter]-(0x61-0x0A)):(S[iter]-(0x41-0x0A)) ):(S[iter]-(0x30));
       N->Num[NumIter] = NUM;
       NumIter ++;
+
     }
 
   }
