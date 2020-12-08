@@ -3,6 +3,7 @@
 #include "num.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "Tests/testADD.h"
 //#define MAXCHAR 8
 
 
@@ -48,11 +49,11 @@ struct num* modpow(struct num* base, struct num* exp, struct num* m) {
 int main(void) 
 {
 	printf("Hello World\n");
-	struct num *A = newNum(4);
 
-	printNum(A);
-	str2Num(A,"0x1234");
-	printNum(A);
+
+	testADD();
+
+
 	return 0;
 }
 

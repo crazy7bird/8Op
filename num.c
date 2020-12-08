@@ -93,8 +93,11 @@ void str2Num(struct num* N, char* S)
     clearNum(N); //Be sure every Byte are clear.
     for(;iter>0;iter-=2)
     {
-      unsigned char NUM = ((S[iter]-0x30 )+ ((S[iter-1]-0x30)<<4));
-      printf("%x\n",NUM);
+      unsigned char NUM;// = ((S[iter]-0x30 )+ ((S[iter-1]-0x30)<<4));
+      //[CODAGE MODE] BARBUS !
+      NUM = (S[iter-1]>0x39) ? ((S[iter-1]>0x46)?(S[iter-1]-(0x61-0x0A)):(S[iter-1]-(0x41-0x0A)) ):(S[iter-1]-(0x30));
+      NUM=NUM<<4;
+      NUM += (S[iter]>0x39) ? ((S[iter]>0x46)?(S[iter]-(0x61-0x0A)):(S[iter]-(0x41-0x0A)) ):(S[iter]-(0x30));
       N->Num[NumIter] = NUM;
       NumIter ++;
     }

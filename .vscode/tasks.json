@@ -8,8 +8,9 @@
             "args": [
                 "-g",
                 "${workspaceFolder}\\*.c",
+                "${workspaceFolder}\\Tests\\*.c",
                 "-o",
-                "${fileDirname}\\main.exe",
+                "${workspaceFolder}\\main.exe",
                 "-Wall"
             ],
             "options": {
