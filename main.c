@@ -3,7 +3,7 @@
 #include "num.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "Tests/Tests.h"
+#include "Tests/AutoTests.h"
 //#define MAXCHAR 8
 
 
@@ -51,10 +51,7 @@ int main(void)
 	printf("Hello World\n");
 
 
-	testADD();
-	testP1();
-	testM1();
-
+	AutoTests();
 
 	return 0;
 }
