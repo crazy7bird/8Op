@@ -7,5 +7,6 @@ void AutoTests(void)
     Error += testADD();
 	Error += testP1();
 	Error += testM1();
+    Error += testSUB();
     printf("END AutoTests with %d error(s)", Error);
 }
