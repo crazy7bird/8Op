@@ -4,4 +4,7 @@
 #include <stdlib.h>
 
 char testADD(void);
+char testP1(void);
+char testM1(void);
+
 

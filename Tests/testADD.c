@@ -1,4 +1,4 @@
-#include "testADD.h"
+#include "Tests.h"
 #include <stdint.h>
 
 char testADD(void)

@@ -3,7 +3,7 @@
 #include "num.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "Tests/testADD.h"
+#include "Tests/Tests.h"
 //#define MAXCHAR 8
 
 
@@ -52,6 +52,8 @@ int main(void)
 
 
 	testADD();
+	testP1();
+	testM1();
 
 
 	return 0;
