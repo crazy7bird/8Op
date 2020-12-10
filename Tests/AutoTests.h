@@ -8,5 +8,6 @@ void AutoTests(void)
 	Error += testP1();
 	Error += testM1();
     Error += testSUB();
+    Error += testMULL();
     printf("END AutoTests with %d error(s)", Error);
 }

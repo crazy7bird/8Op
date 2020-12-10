@@ -100,8 +100,6 @@ void _SUB(struct num* A, struct num *B, struct num *R)
     }
   }
   
-
-
 }
 
 /*So like ADD, but with mull*/
