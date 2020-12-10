@@ -78,19 +78,30 @@ void _SUB(struct num* A, struct num *B, struct num *R)
   unsigned char SUB = 0; // Var for calcul addition and safe overflow
   for(iter =0; iter < Size; iter++)
   {
-    SUB = A->Num[iter] - B->Num[iter];
-    if((SUB > A->Num[iter]) || (SUB > B->Num[iter]) || ((SUB-carry) > SUB))
+    SUB = A->Num[iter] - B->Num[iter] - carry;
+    //IF c = 0 A<B carry or A<=B if allready c
+    if(carry ? A->Num[iter]<=B->Num[iter] : A->Num[iter]<B->Num[iter])
     {
-      SUB-=carry;
       carry = 1;
     }
     else
     {
-      SUB-=carry;
       carry = 0;
     }
     R->Num[iter] = SUB;
   }
+  if(R->Size > A->Size)
+  { 
+    unsigned char Finish = carry ? (unsigned char)0xFF : (unsigned char)0x00;
+    while(iter < R->Size)
+    {
+      R->Num[iter] = Finish;
+      iter++;
+    }
+  }
+  
+
+
 }
 
 /*So like ADD, but with mull*/

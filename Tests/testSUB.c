@@ -20,12 +20,12 @@ char testSUB(void)
         printf("[_SUB]Test 1 fail : %x\n", *r);
         Error++;
     }
-//TODO think about tests like for ADD
-    //Test 2 carry
+
+    //Test 2 carry overflow
     str2Num(A,"0x01");
     str2Num(B,"0xFF");
     _SUB(A,B,R);
-    if(*r != 0)
+    if(*r != 0xFFFFFF02)
     {
         printf("[_SUB]Test 2 fail : %x\n",*r);
         Error++;
@@ -52,11 +52,11 @@ char testSUB(void)
     }
 
     //Test 5 purity 
-    str2Num(A,"0x01");
-    str2Num(B,"0x00");
+    str2Num(A,"0x10");
+    str2Num(B,"0x01");
     str2Num(R,"0x12345678");
     _SUB(A,B,R);
-    if(*r != 0)
+    if(*r != 0x0F)
     {
         printf("[_SUB]Test 5 fail : %x\n", *r);
         Error++;
