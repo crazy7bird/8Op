@@ -111,3 +111,20 @@ void str2Num(struct num* N, char* S)
   }
 
 }
+
+/*Effective digit give */
+unsigned char effectiveSizeNum(struct num * N)
+{
+  unsigned char realSize = N->Size - 1;
+  while(N->Num[realSize] ==0 && realSize >0)
+  {
+    realSize--;
+  } 
+
+  if(N->Num[realSize]  != 0)
+  {
+    realSize++;
+    return realSize;
+  }
+  else return 0;
+}

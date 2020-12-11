@@ -114,6 +114,9 @@ void _MULL(struct num* A, struct num *B, struct num *R)
   struct num* mulp = newNum(R->Size);
   struct num* muli = newNum(R->Size);
 
+  //Clear the return buffer.
+  clearNum(R);
+
   for(y=0; y<B->Size;y++)
   {
     //Y représente l’index sur B

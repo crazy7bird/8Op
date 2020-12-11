@@ -33,4 +33,7 @@ void copyNum(struct num* A, struct num *B);
 /*Fill the num structure with string ex: "123456789\0"*/
 void str2Num(struct num* N, char* S);
 
+/*Numbers of digits realy used*/
+unsigned char effectiveSizeNum(struct num * N);
+
 #endif

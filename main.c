@@ -50,9 +50,21 @@ int main(void)
 {
 	printf("Hello World\n");
 
+	struct num* A = newNum(8);
+
+	unsigned char X;
+	printNum(A);
+	printf("%d\n",effectiveSizeNum(A));
+	for(X=0; X<A->Size;X++)
+	{
+		clearNum(A);
+		A->Num[X] =0x01;
+		printNum(A);
+		printf("%d\n",effectiveSizeNum(A));
+	}
+
 
 	AutoTests();
-
 	return 0;
 }
 

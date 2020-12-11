@@ -62,6 +62,43 @@ char testADD(void)
         Error++;
     }
 
+    //Test 6 A = A + B
+    str2Num(A,"0xFF");
+    str2Num(B,"0xFF");
+    _ADD(A,B,A);
+    if(A->Num[0] != 0xFE || A->Num[1] != 0x01)
+    {
+        printf("[_ADD]Test 6 fail : %x%x\n", A->Num[1],A->Num[0]);
+        Error++;
+    }
+    //Test 7 A = A + A
+    str2Num(A,"0xFF");
+    _ADD(A,A,A);
+    if(A->Num[0] != 0xFE || A->Num[1] != 0x01)
+    {
+        printf("[_ADD]Test 7 fail : %x%x\n", A->Num[1],A->Num[0]);
+        Error++;
+    }
+
+    unsigned short y = 0;
+    unsigned short x = 0;
+    A->Num[1] = 0;
+    B->Num[1] = 0;
+    for(y=0;y<256;y++)
+    {
+        for(x=0;x<256;x++)
+        {
+            A->Num[0] = (unsigned char)(x);
+            B->Num[0] = (unsigned char)(y);
+            _ADD(A,B,R);
+            if(*r != (x+y))
+            {
+                printf("[_ADD]Test BruteForce fail @ %x + %x: %x (wanted %x)\n",x,y,*r,(x+y));
+                Error++;
+            }
+        }
+    }
+
 
     //End
     if(!Error)
