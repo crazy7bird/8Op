@@ -164,17 +164,20 @@ void _DIV(struct num *N,struct num* D,struct num* Q, struct num*R)
 	struct num * Ql = (Q == NULL) ? newNum(N->Size) :Q;
 	struct num * Rl = (R == NULL) ? newNum(N->Size) :R;
 
+  clearNum(Ql);
+  clearNum(Rl);
+
   //Precalcul test 
   char test = _CMP(D,N);
   if(test>0) //N<D
   {
-    clearNum(Ql);
+    //clearNum(Ql);
     copyNum(N,Rl);
   }
 
   if(test == 0)
   {
-    clearNum(Rl);
+    //clearNum(Rl);
     Ql->Num[0]=0x01;
   }
   
