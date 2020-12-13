@@ -1,4 +1,5 @@
 #include "../basicop.h"
+#include "../logicop.h"
 #include "../num.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,5 +10,6 @@ char testM1(void);
 char testSUB(void);
 char testMUL(void);
 char testDIV(void);
+char testRSHIFT(void);
 
 
