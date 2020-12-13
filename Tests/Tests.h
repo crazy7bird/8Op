@@ -7,6 +7,7 @@ char testADD(void);
 char testP1(void);
 char testM1(void);
 char testSUB(void);
-char testMULL(void);
+char testMUL(void);
+char testDIV(void);
 
 

@@ -1,13 +1,15 @@
 #include "Tests.h"
 #include <stdint.h>
 
-char testMULL(void)
+char testDIV(void)
 {
     int Error = 0;
     //Variables
-    struct num *A = newNum(2);
-    struct num *B = newNum(2);
-    struct num *R = newNum(4);
+    struct num *N = newNum(2);
+    struct num *D = newNum(2);
+    struct num *Q = newNum(2);
+    struct num *R = newNum(2);
+
 
     uint32_t *r = (uint32_t *)R->Num; //Generate WARNING, it’s OK
 /*
