@@ -29,7 +29,7 @@ char testMULL(void)
         {
             A->Num[0] = (unsigned char)(x);
             B->Num[0] = (unsigned char)(y);
-            _MULL(A,B,R);
+            _MUL(A,B,R);
             if(*r != (x*y))
             {
                 printf("[_MULL]Test BruteForce fail @ %x x %x: %x (wanted %x)\n",x,y,*r,(x*y));
@@ -41,7 +41,7 @@ char testMULL(void)
     //Test 6 A = A - B
     str2Num(A,"0xFF");
     str2Num(B,"0xFF");
-    _SUB(A,B,A);
+    _MUL(A,B,A);
     if(A->Num[0] != 0x01 || A->Num[1] != 0xFE)
     {
         printf("[_MULL]Test 6 fail : %x%x\n", A->Num[1],A->Num[0]);
@@ -49,7 +49,7 @@ char testMULL(void)
     }
     //Test 7 A = A - A Serious ? who do that ?
     str2Num(A,"0xFF");
-    _SUB(A,A,A);
+    _MUL(A,A,A);
     if(A->Num[0] != 0x01 || A->Num[1] != 0xFE)
     {
         printf("[_MULL]Test 7 fail : %x%x\n", A->Num[1],A->Num[0]);

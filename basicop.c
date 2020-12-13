@@ -103,25 +103,29 @@ void _SUB(struct num* A, struct num *B, struct num *R)
 }
 
 /*So like ADD, but with mull*/
-void _MULL(struct num* A, struct num *B, struct num *R)
+void _MUL(struct num* A, struct num *B, struct num *R)
 {
-  /*Round 1 R[n*2]R[n*2 +1] = A[n]*B[n] */
   unsigned char x = 0; //Index sur A
+  //Notes Digit is a char 
+  unsigned char xDigit = effectiveSizeNum(A); //used digits on A
   unsigned char y = 0; //Index sur B
+  unsigned char yDigit = effectiveSizeNum(B); //used digits on B
   unsigned char z = 0;//Index sur R
+  //unsigned char zMax = R->Size; //Size of Return buffer. Overflow protection. like if(z<zMax)mul[Z] = i[x];
+  //I and *i are used to calculate  A->Num[x] * B->Num[y] wich is a 16bit, then used i[0] and i[1]
   unsigned short I;
   unsigned char* i = (unsigned char*)&I;
-  struct num* mulp = newNum(R->Size);
-  struct num* muli = newNum(R->Size);
 
-  //Clear the return buffer.
-  clearNum(R);
 
-  for(y=0; y<B->Size;y++)
+  struct num* C    = newNum(R->Size); //C for Return buffer
+  struct num* mulp = newNum(R->Size); //mulp registrer for inner calculs 
+  struct num* muli = newNum(R->Size); //muli registers for inner calculs 
+
+  for(y=0; y<yDigit;y++)
   {
     //Y représente l’index sur B
     z = y;
-    for(x=0; x<A->Size; x++)
+    for(x=0; x<xDigit; x++)
     {
       /*Fill up 2 register that multiplication dint need add, then add the 2 register*/
       I = A->Num[x] * B->Num[y];
@@ -137,14 +141,16 @@ void _MULL(struct num* A, struct num *B, struct num *R)
         muli->Num[z] = i[1];
       }
     }
-    _ADD(R,muli,R);
-    _ADD(R,mulp,R);
+    _ADD(C,muli,C);
+    _ADD(C,mulp,C);
     clearNum(muli);
     clearNum(mulp);
   }
   /*Clear */
   delNum(mulp);
   delNum(muli);
+  copyNum(C,R);
+  delNum(C);
 }
 
 /*division  between 2 num*/

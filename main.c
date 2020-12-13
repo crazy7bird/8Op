@@ -23,7 +23,7 @@ struct num* modpow(struct num* base, struct num* exp, struct num* m) {
 		  printf("START inside\n");
 		  printNum(result);
 		  printNum(base);
-		  _MULL(result,base,calcul);
+		  _MUL(result,base,calcul);
 		  printNum(calcul);
 		  printNum(m);
 		  _DIV(calcul,m,NULL,result);
@@ -34,7 +34,7 @@ struct num* modpow(struct num* base, struct num* exp, struct num* m) {
       _RSHIFT(exp,1);
 	  clearNum(calcul);
       //base = (base * base) % m;
-	  _MULL(base,base,calcul);
+	  _MUL(base,base,calcul);
 	  printNum(calcul);
 	  _DIV(calcul,m,NULL,base);
 	  printNum(exp);
