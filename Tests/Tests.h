@@ -11,5 +11,6 @@ char testSUB(void);
 char testMUL(void);
 char testDIV(void);
 char testRSHIFT(void);
+char testLSHIFT(void);
 
 

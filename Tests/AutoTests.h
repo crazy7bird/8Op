@@ -14,6 +14,7 @@ void AutoTests(void)
 
     //All logicals operations from logicop.c
     Error += testRSHIFT();
+    Error += testLSHIFT();
 
 
     printf("END AutoTests with %d error(s)", Error);

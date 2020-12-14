@@ -1,7 +1,7 @@
 #include "Tests.h"
 #include <stdint.h>
 
-char testRSHIFT(void)
+char testLSHIFT(void)
 {
     int Error=0;
     //Variables
@@ -10,21 +10,19 @@ char testRSHIFT(void)
 
     //Test 0 << 1.
     str2Num(A,"0x00");
-    _RSHIFT(A,1);
+    _LSHIFT(A,1);
     if(*r != 0)
     {
-        printf("[_RSHIFT]Test 1 fail : %x\n", *r);
+        printf("[_LSHIFT]Test 1 fail : %x\n", *r);
         Error++;
     }
     
     //Test 0<<8
     str2Num(A,"0x00");
-    printNum(A);
-    _RSHIFT(A,8);
-    printNum(A);
+    _LSHIFT(A,8);
     if(*r != 0)
     {
-        printf("[_RSHIFT]Test 2 fail : %x\n", *r);
+        printf("[_LSHIFT]Test 2 fail : %x\n", *r);
         Error++;
     }
 
@@ -32,7 +30,7 @@ char testRSHIFT(void)
     //End
     if(!Error)
     {
-        printf("_RSHIFT no Error\n");
+        printf("_LSHIFT no Error\n");
     }
     return Error;
 }
