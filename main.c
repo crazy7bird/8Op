@@ -49,7 +49,7 @@ struct num* modpow(struct num* base, struct num* exp, struct num* m) {
 int main(void) 
 {
 	printf("Hello World\n");
-
+/*
 	struct num* A = newNum(8);
 
 	unsigned char X;
@@ -62,7 +62,7 @@ int main(void)
 		printNum(A);
 		printf("%d\n",effectiveSizeNum(A));
 	}
-
+*/
 
 	AutoTests();
 	return 0;

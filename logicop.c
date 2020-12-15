@@ -8,8 +8,12 @@ void _RSHIFT(struct num *N, char s) {
 	char fastshift = s / 8;
 	char slowshift = s % 8;
 	unsigned char index;
-	for (index = 0; index < N->Size; index++) {
+	for (index = 0; index < (N->Size - fastshift); index++) {
 		N->Num[index] = N->Num[index + fastshift];
+	}
+	for(;index<N->Size;index++)
+	{
+		N->Num[index] = 0x00;
 	}
 	for (index = 0; index < (N->Size - 1); index++) {
 		char D = 0;
