@@ -34,20 +34,23 @@ void _LSHIFT(struct num *N, char s) {
 	char fastshift = s / 8;
 	char slowshift = s % 8;
 	unsigned char index = N->Size -1;
-  	unsigned char dec = index - fastshift;
-  while(dec > 0)
-  {
-    N->Num[index] = (N->Num[dec] << slowshift) + (N->Num[dec-1] >> (8-slowshift)) ;
-    dec --;
-    index --;
-  }
-  /*One more time*/
-  N->Num[index] = (N->Num[dec] << slowshift);
+	  if(index > fastshift)
+	  {
+		  	unsigned char dec = index - fastshift;  
+		while(dec > 0)
+		{
+			N->Num[index] = (N->Num[dec] << slowshift) + (N->Num[dec-1] >> (8-slowshift)) ;
+			dec --;
+			index --;
+		}
+		/*One more time*/
+		N->Num[index] = (N->Num[dec] << slowshift);
+	  }
 
-  for(index = 0; index < fastshift ; index++)
-  {
-    N->Num[index] =0x00;
-  }
+	for(index = 0; index < fastshift ; index++)
+	{
+		N->Num[index] =0x00;
+	}
 }
 
 /*Compare A with B,
