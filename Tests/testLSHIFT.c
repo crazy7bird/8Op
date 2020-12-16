@@ -37,7 +37,7 @@ char testLSHIFT(void)
         Error++;
     }
 
-    printf("[_LSHIFT] If crash, it's an overflow fault that creat sigtrap...\n ");
+    printf("[_LSHIFT] If crash, it's an overflow fault that creat sigtrap...\n");
     
     //Test 4 on  full number <<1
     str2Num(A,"0x87654321");
