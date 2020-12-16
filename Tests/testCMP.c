@@ -10,7 +10,7 @@ char testCMP(void)
 
     unsigned char r;
 
-    //Test CMP equal
+    //Test 1 CMP equal
     str2Num(A,"0x00");
     str2Num(B,"0x00");
     r = _CMP(A,B);
@@ -20,7 +20,7 @@ char testCMP(void)
         Error++;
     }
 
-    //Test CMP equal big number.
+    //Test 2 CMP equal big number.
     str2Num(A,"0x12345678");
     str2Num(B,"0x12345678");
     r = _CMP(A,B);
@@ -29,6 +29,27 @@ char testCMP(void)
         printf("[_CMP]Test 2 fail : %x\n", r);
         Error++;
     }
+
+    //Test 3 CMP biger.
+    str2Num(A,"0x12345679");
+    str2Num(B,"0x12345670");
+    r = _CMP(A,B);
+    if(r != 1)
+    {
+        printf("[_CMP]Test 3 fail : %x\n", r);
+        Error++;
+    }
+
+    //Test 4 CMP smaller.
+    str2Num(A,"0x12345670");
+    str2Num(B,"0x12345679");
+    r = _CMP(A,B);
+    if(r != (unsigned char)(-1))
+    {
+        printf("[_CMP]Test 4 fail : %x\n", r);
+        Error++;
+    }
+
 
 
     //End
