@@ -13,5 +13,6 @@ char testDIV(void);
 char testRSHIFT(void);
 char testLSHIFT(void);
 char testCMP(void);
+char testCMPINT(void);
 
 

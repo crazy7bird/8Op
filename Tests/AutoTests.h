@@ -16,6 +16,7 @@ void AutoTests(void)
     Error += testRSHIFT();
     Error += testLSHIFT();
     Error += testCMP();
+    Error += testCMPINT();
 
 
     printf("END AutoTests with %d error(s)", Error);

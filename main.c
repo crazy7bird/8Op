@@ -63,7 +63,15 @@ int main(void)
 		printf("%d\n",effectiveSizeNum(A));
 	}
 */
-
+/*
+	struct num* A = newNum(8);
+	struct num* B = newNum(8);
+	struct num* C = newNum(8);
+	str2Num(A,"0x1234567890");
+	str2Num(B,"0x1337");
+	str2Num(C,"0x424242");
+	modpow(A, B, C);
+	*/
 	AutoTests();
 	return 0;
 }
