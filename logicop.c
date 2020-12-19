@@ -107,7 +107,7 @@ signed char _CMP(struct num*A, struct num *B)
 }
 
 /*Compare to a non num number*/
-char _CMPINT(struct num *A, char B) {
+char _CMPINT(struct num *A, unsigned char B) {
 	unsigned char x = (A->Size - 1);
 	if (A->Size > 1) // More digit on A
 	{
@@ -116,5 +116,5 @@ char _CMPINT(struct num *A, char B) {
 				return (char)1;
 	}
 	// Do the last digit
-	return (char)A->Num[0] - B;
+	return (A->Num[0]>B)?(char)1:((A->Num[0]<B)?(char)-1:(char)0);
 }
