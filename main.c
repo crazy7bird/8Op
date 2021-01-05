@@ -18,25 +18,26 @@ struct num* modpow(struct num* base, struct num* exp, struct num* m) {
    {
       if ((exp->Num[0] & 1) > 0)
 	  {
-		  clearNum(calcul);
 		  //result = (result * base) % m;
 		  printf("START inside\n");
+		  clearNum(calcul);
 		  printNum(result);
 		  printNum(base);
-		  _MUL(result,base,calcul);
-		  printNum(calcul);
 		  printNum(m);
-		  _DIV(calcul,m,NULL,result);
+		  _MUL(result,base,result);
+		  printNum(result);
+		  _DIV(result,m,NULL,calcul);
+		  copyNum(calcul,result);
 		  printNum(result);
 		  printf("---\n");
 	  } 
 	  printf("START outside\n");
       _RSHIFT(exp,1);
-	  clearNum(calcul);
       //base = (base * base) % m;
-	  _MUL(base,base,calcul);
-	  printNum(calcul);
-	  _DIV(calcul,m,NULL,base);
+	  _MUL(base,base,base);
+	  clearNum(calcul);
+	  _DIV(base,m,NULL,calcul);
+	  copyNum(calcul,base);
 	  printNum(exp);
 	  printNum(base);
 	  printf("---\n");
@@ -63,7 +64,7 @@ int main(void)
 		printf("%d\n",effectiveSizeNum(A));
 	}
 */
-/*
+
 	struct num* A = newNum(8);
 	struct num* B = newNum(8);
 	struct num* C = newNum(8);
@@ -71,7 +72,7 @@ int main(void)
 	str2Num(B,"0x1337");
 	str2Num(C,"0x424242");
 	modpow(A, B, C);
-	*/
+
 	AutoTests();
 	return 0;
 }
