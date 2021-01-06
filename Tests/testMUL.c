@@ -28,21 +28,21 @@ char testMUL(void)
         }
     }
 
-    //Test 6 A = A - B
+    //Test 2: A = A * B
     str2Num(A,"0xFF");
     str2Num(B,"0xFF");
     _MUL(A,B,A);
     if(A->Num[0] != 0x01 || A->Num[1] != 0xFE)
     {
-        printf("[_MULL]Test 6 fail : %x%x\n", A->Num[1],A->Num[0]);
+        printf("[_MULL]Test 2 fail : %x%x\n", A->Num[1],A->Num[0]);
         Error++;
     }
-    //Test 7 A = A - A Serious ? who do that ?
+    //Test 3: A = A * A Yhea A²
     str2Num(A,"0xFF");
     _MUL(A,A,A);
     if(A->Num[0] != 0x01 || A->Num[1] != 0xFE)
     {
-        printf("[_MUL]Test 7 fail : %x%x\n", A->Num[1],A->Num[0]);
+        printf("[_MUL]Test 3 fail : %x%x\n", A->Num[1],A->Num[0]);
         Error++;
     }
 
