@@ -1,11 +1,12 @@
 #include "basicop.h"
 #include "logicop.h"
+#include "advancedop.h"
 #include "num.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "Tests/AutoTests.h"
 //#define MAXCHAR 8
-
+/*
 
 struct num* modpow(struct num* base, struct num* exp, struct num* m) {
 
@@ -36,7 +37,7 @@ struct num* modpow(struct num* base, struct num* exp, struct num* m) {
    delNum(calcul);
    return result;
  }
-
+*/
 int main(void) 
 {
 	printf("Hello World\n");
@@ -55,13 +56,13 @@ int main(void)
 	}
 */
 
-	struct num* A = newNum(16);
-	struct num* B = newNum(16);
-	struct num* C = newNum(16);
+	struct num* A = newNum(10);
+	struct num* B = newNum(10);
+	struct num* C = newNum(10);
 	str2Num(A,"0x1234567890");
 	str2Num(B,"0x1337");
 	str2Num(C,"0x424242");
-	modpow(A, B, C);
+	_MODPOW(A, B, C);
 
 	AutoTests();
 	return 0;
