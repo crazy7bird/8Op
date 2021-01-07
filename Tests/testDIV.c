@@ -43,13 +43,13 @@ char testDIV(void)
     str2Num(N,"0xFFFF");
     str2Num(D,"0x1000");
     _DIV(N,D,N,R);
-    if(N->Num[0] != 0x00 || N->Num[1] != 0x0F)
+    if(N->Num[0] != 0x0F || N->Num[1] != 0x00)
     {
         printf("[_DIV]Test 2 fail : %x%x\n", N->Num[1],N->Num[0]);
         Error++;
     }
     /*
-    //Test 3: A = A * A Yhea A²
+    //Test 3: A = A / A = One 
     str2Num(A,"0xFF");
     _MUL(A,A,A);
     if(A->Num[0] != 0x01 || A->Num[1] != 0xFE)
